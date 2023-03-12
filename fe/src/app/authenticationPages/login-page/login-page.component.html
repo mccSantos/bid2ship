@@ -1,0 +1,56 @@
+<div style="justify-content: center; height: 100%; width: 100%">
+  <div style="width: 100%; height: 100%">
+    <div style="position: absolute; top: 0px" class="blurred"></div>
+    <div class="menu" style="background-color: white; max-width: 100%">
+      <div
+        style="
+          height: 25%;
+          display: flex;
+          justify-content: center;
+          margin-bottom: 30px;
+        "
+      >
+        <a
+          ><img class="logo" src="https://lh3.googleusercontent.com/1ofcb0HBYitfIAXci2q_h-ipMOKJ7LPeRWEu_d3dJvyJ6MsPQjILySKMb_Jmz7pea1MK2hSHoX5spLB-sRXb7jEl-KXNnu0ODS48y4OkYfqdR5sq6pPyE5A6_Z-B_kn1HX0x81ZSYudBPhRAF2-uerSIeC_aRkaCaWv_hsWUXWg2SGTP6obmUD00zwd5s_VI=nw"
+        /></a>
+      </div>
+      <div
+        style="
+          display: inline-flex;
+          display: inline-flex;
+          height: 60%;
+          align-items: center;
+          width: 100%;
+        "
+      >
+        <div style="vertical-align: middle; width: 100%">
+          <h1 style="margin-bottom: 20px; font-weight: 900; font-size: 42px">
+            Bid2Ship
+          </h1>
+
+          <h3 style="margin-bottom: 20px; font-size: 30px">Login</h3>
+
+          <span class="p-float-label" style="margin-top: 30px;">
+            <input type="text" id="usertext" pInputText style="width: 100%"/>
+            <label for="usertext">Username</label>
+          </span>
+          <span class="p-float-label" style="margin-top: 30px;">
+            <input type="text" id="passwordtext" pInputText style="width: 100%" />
+            <label for="passwordtext">Password</label>
+          </span>
+          <button pButton color="warn"
+          style="
+            font-size: 20px;
+            padding: 8px;
+            padding-left: 20px;
+            padding-right: 20px;
+            float: right;
+            margin-top: 10px  ;
+          "
+          (click)="login()">Entrar</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

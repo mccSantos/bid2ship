@@ -1,0 +1,117 @@
+<h1>As minhas encomendas</h1>
+
+<p-table
+  [value]="packs"
+  [paginator]="true"
+  [rows]="10"
+  [showCurrentPageReport]="true"
+  currentPageReportTemplate="A mostrar de {first} a {last} de um total de {totalRecords} encomendas"
+  [rowsPerPageOptions]="[10, 25, 50]"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>id</th>
+      <th>Origem</th>
+      <th>Destino</th>
+      <th>Data de entrega</th>
+      <th>Status</th>
+      <th>Licitações</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-car>
+    <tr>
+      <td>{{ car.id }}</td>
+      <td>{{ car.origin }}</td>
+      <td>{{ car.destination }}</td>
+      <td>{{ car.date | date }}</td>
+      <td>{{ car.status }}</td>
+      <td>
+        <button
+          pButton
+          type="button"
+          class="p-button-secondary"
+          icon="pi pi-cog"
+          (click)="seeBids(car)"
+        ></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-dialog header="Criar encomenda" [(visible)]="displayCreate" [modal]="true">
+  <span class="p-float-label" style="margin-top: 30px">
+    <input type="text" id="origintext" pInputText style="width: 100%" />
+    <label for="origintext">Origem</label>
+  </span>
+  <span class="p-float-label" style="margin-top: 30px">
+    <input type="text" id="destinytext" pInputText style="width: 100%" />
+    <label for="destinytext">Destino</label>
+  </span>
+  <span class="p-float-label" style="margin-top: 30px">
+    <input type="number" id="weightnumber" pInputText style="width: 100%" />
+    <label for="weightnumber">Peso</label>
+  </span>
+  <span class="p-float-label" style="margin-top: 30px">
+    <input type="number" id="lengthnumber" pInputText style="width: 100%" />
+    <label for="lengthnumber">Comprimento</label>
+  </span>
+  <span class="p-float-label" style="margin-top: 30px">
+    <input type="number" id="heightnumber" pInputText style="width: 100%" />
+    <label for="heightnumber">Altura</label>
+  </span>
+  <span class="p-float-label" style="margin-top: 30px">
+    <input type="number" id="widthnumber" pInputText style="width: 100%" />
+    <label for="widthnumber">Largura</label>
+  </span>
+  <span class="p-float-label" style="margin-top: 30px">
+    <input type="number" id="lengthnumber" pInputText style="width: 100%" />
+    <label for="lengthnumber">Comprimento</label>
+  </span>
+  <span class="" style="margin-top: 60px">
+    <label>Data máxima para entrega</label>
+    <input type="date" pInputText style="width: 100%" />
+  </span>
+  <button pButton (click)="displayCreate = false">Ok</button>
+</p-dialog>
+
+<p-dialog header="Licitações" [(visible)]="displayBids" [modal]="true">
+  <p-table
+    [value]="(curPackage || { bids: [] }).bids"
+    [paginator]="true"
+    [rows]="10"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="A mostrar de {first} a {last} de um total de {totalRecords} encomendas"
+    [rowsPerPageOptions]="[10, 25, 50]"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Transportadora</th>
+        <th>Nome Transportadora</th>
+        <th>Preço</th>
+        <th>Estimativa de entrega</th>
+        <th>Aceitar</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-car>
+      <tr>
+        <td style="text-align: center">
+          <img style="height: 100px" [src]="carriers[car.carrier].logo" />
+        </td>
+        <td>{{ carriers[car.carrier].name }}</td>
+        <td>{{ car.price }}€</td>
+        <td>{{ car.eta | date }}</td>
+        <td>
+          <button
+            pButton
+            type="button"
+            class="p-button-secondary"
+            icon="pi pi-check"
+            (click)="displayBids = false"
+          ></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-dialog>
+
+<button pButton (click)="showCreate()">Criar encomenda</button>

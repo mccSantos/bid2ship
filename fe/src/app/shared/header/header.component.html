@@ -1,0 +1,34 @@
+<div class="header">
+  <p style="margin-left: 50px; font-weight: 900; font-size: larger">Bid2Ship</p>
+  <div style="width: 50px"></div>
+  <div *ngFor="let item of items">
+    <div
+      [routerLink]="item.href"
+      routerLinkActive="router-link-active"
+      class="header-item"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      {{ item.text }}
+    </div>
+  </div>
+  <div style="margin-left: auto; margin-right: 20px">
+    <div *ngIf="!authService.isAuthenticated()">
+      <p-menu #menu [popup]="true" [model]="menuItems"></p-menu>
+      <p-avatar
+        icon="pi pi-user"
+        shape="circle"
+        (click)="menu.toggle($event)"
+      ></p-avatar>
+    </div>
+    <div *ngIf="authService.isAuthenticated()">
+      <p-menu #menu [popup]="true" [model]="menuItemsAuth"></p-menu>
+      <p-avatar
+        icon="pi pi-user"
+        shape="circle"
+        (click)="menu.toggle($event)"
+      ></p-avatar>
+      {{ authService.getUser().name }}
+    </div>
+  </div>
+</div>
+<div style="height: 80px"></div>
